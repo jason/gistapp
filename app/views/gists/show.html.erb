@@ -2,7 +2,7 @@
 <% if @gist.tags.any? %>
   <h4>Tags: </h4>
   <% @gist.tags.each do |tag| %>
-    <div class="tag"><%= tag.name %></div>
+    <div class="round label"><%= tag.name %></div>
   <% end %>
 <% end %>
 <div style="clear: both"></div>

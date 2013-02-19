@@ -3,13 +3,9 @@
   <%= f.text_field :title %>
   <br>
 
-  <%= f.input :tag_ids,
-              :collection => Tag.all,
-              :label_method => :name,
-              :value_method => :id,
-              :as => :check_boxes %>
-
-  <br>
+  <div id="tagSelect">
+    <div id="tagContainer"></div>
+  </div>
 
   <h2>Files:</h2>
   <br>
@@ -44,5 +40,8 @@
 
       $('.file-forms').append(c);
     });
+
+    var t = new TextSearchSelect($("#tagSelect"));
+    t.initialize();
   });
 </script>

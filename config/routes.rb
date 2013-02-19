@@ -1,5 +1,6 @@
 Gistapp::Application.routes.draw do
-  
+  resources :tags, only: :index
+
   resources :sessions, only: [:new, :create, :destroy]
 
   resources :users, only: [:new, :create, :show] do
