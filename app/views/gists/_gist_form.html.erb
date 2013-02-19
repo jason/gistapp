@@ -1,0 +1,40 @@
+<%= form_for(@gist) do |f| %>
+  <%= f.label :title, "Title" %>
+  <%= f.text_field :title %>
+  <br>
+
+  <h2>Files:</h2>
+  <br>
+  <div class="file-forms">
+    <%= f.fields_for :files do |files_form| %>
+      <div class='gist-file-form'>
+        <%= files_form.label :body %>
+        <br>
+        <%= files_form.text_area :body %>
+        <br>
+        <button type="button" class="remove">Remove file</button>
+      </div>
+    <% end %>
+  </div>
+  <button type="button" class="add">Add File</button>
+  <%= f.submit %>
+<% end %>
+
+<script>
+  $(function() {
+    $('.remove').click(function() {
+      $(this).parent().empty();
+    });
+
+    $('.add').click(function() {
+      var c = $(".gist-file-form").first().clone();
+      var unique = "gist[files_attributes][" +
+                   (new Date().getTime()) +
+                   "][body]";
+
+      c.find('textarea').attr("name": unique);
+
+      $('.file-forms').append(c);
+    });
+  });
+</script>

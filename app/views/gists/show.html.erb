@@ -1,0 +1,24 @@
+<h1><%= @gist.title %></h1>
+<% @gist.files.each do |file| %>
+  <p><%= file.body %><p>
+<% end %>
+<%= button_to("Favorite", gist_favorite_path(@gist),
+               method: :post, remote: true) %>
+
+<%= button_to("Unfavorite", gist_favorite_path(@gist),
+               method: :delete, remote: true) %>
+
+<script>
+  $(function () {
+    <% if @favorited %>
+      $('form').first().hide();
+    <% else %>
+      $('form').last().hide();
+    <% end %>
+
+    $('form').on("ajax:success", function() {
+      console.log("hello");
+      $('form').toggle();
+    });
+  });
+</script>

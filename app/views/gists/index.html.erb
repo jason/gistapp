@@ -1,0 +1,9 @@
+<h1><%= current_user.name %></h1>
+<%= link_to "Create a gist", new_user_gist_path(current_user) %>
+<% if @gists %>
+  <h4>Gists:</h4>
+  <% @gists.each do |gist| %>
+    -><%= link_to gist.title, gist_path(gist) %>
+    <br>
+  <% end %>
+<% end %>
