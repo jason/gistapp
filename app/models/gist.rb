@@ -6,9 +6,10 @@ class Gist < ActiveRecord::Base
   has_many :favorites
   has_many :taggings
   has_many :tags, :through => :taggings, :inverse_of => :gists
+
   validates_presence_of :title
   validates_presence_of :user
 
-  attr_accessible :title, :files_attributes
+  attr_accessible :title, :files_attributes, :tag_ids
 
 end

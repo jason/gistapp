@@ -6,7 +6,7 @@ class GistsController < ApplicationController
 
   def create
     @gist = current_user.gists.new(params[:gist])
-    if @gist.save
+    if @gist.save!
       redirect_to @gist
     else
       render 'new'

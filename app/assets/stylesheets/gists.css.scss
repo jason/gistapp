@@ -1,3 +1,25 @@
 // Place all the styles related to the Gists controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.tag {
+  float: left;
+  padding: 3px;
+  border-radius: 3px;
+  border: 1px solid lightgrey;
+  margin-right: 5px;
+}
+
+.file {
+  padding: 10px;
+  border: 1px solid lightgrey;
+  border-radius: 5px;
+  margin-bottom: 30px;
+  width: 100%;
+  overflow: auto;
+  white-space: pre-wrap;       /* css-3 */
+  white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+  white-space: -pre-wrap;      /* Opera 4-6 */
+  white-space: -o-pre-wrap;    /* Opera 7 */
+  word-wrap: break-word;       /* Internet Explorer 5.5+ */
+}

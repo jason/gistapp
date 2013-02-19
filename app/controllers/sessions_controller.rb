@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
 
     if @user
       build_cookie(@user)
-      redirect_to user_path(@user)
+      redirect_to root_path
     else
       render "new"
     end

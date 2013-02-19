@@ -1,6 +1,14 @@
-<%= form_for(@gist) do |f| %>
+<%= simple_form_for(@gist) do |f| %>
   <%= f.label :title, "Title" %>
   <%= f.text_field :title %>
+  <br>
+
+  <%= f.input :tag_ids,
+              :collection => Tag.all,
+              :label_method => :name,
+              :value_method => :id,
+              :as => :check_boxes %>
+
   <br>
 
   <h2>Files:</h2>
@@ -32,7 +40,7 @@
                    (new Date().getTime()) +
                    "][body]";
 
-      c.find('textarea').attr("name": unique);
+      c.find('textarea').attr("name", unique);
 
       $('.file-forms').append(c);
     });

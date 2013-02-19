@@ -3,7 +3,7 @@
 <% if @gists %>
   <h4>Gists:</h4>
   <% @gists.each do |gist| %>
-    -><%= link_to gist.title, gist_path(gist) %>
+    &bull; <%= link_to gist.title, gist_path(gist) %>
     <br>
   <% end %>
 <% end %>

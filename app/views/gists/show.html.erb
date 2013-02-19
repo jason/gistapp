@@ -1,12 +1,23 @@
 <h1><%= @gist.title %></h1>
-<% @gist.files.each do |file| %>
-  <p><%= file.body %><p>
+<% if @gist.tags.any? %>
+  <h4>Tags: </h4>
+  <% @gist.tags.each do |tag| %>
+    <div class="tag"><%= tag.name %></div>
+  <% end %>
 <% end %>
+<div style="clear: both"></div>
+<h4>Files:</h4>
+<% @gist.files.each do |file| %>
+  <pre class="file"><%= file.body %></pre>
+<% end %>
+<div style="clear: both"></div>
 <%= button_to("Favorite", gist_favorite_path(@gist),
                method: :post, remote: true) %>
 
 <%= button_to("Unfavorite", gist_favorite_path(@gist),
                method: :delete, remote: true) %>
+
+<%= link_to "Back", root_path %>
 
 <script>
   $(function () {
