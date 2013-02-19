@@ -15,6 +15,9 @@ this.Tag.grabAll = (callback) ->
   $.getJSON(
     "/tags",
     (data) ->
+      data = _.sortBy(data, (tag) ->
+        return tag.name
+      )
       $(data).each(() ->
         Tag.all.push(new Tag(this.id, this.name))
 
@@ -52,28 +55,36 @@ this.TextSearchSelect = (element) ->
       that.element.append(that.tagSelections)
 
       that.tagSelections.on("click", ".tagSelection", () ->
-        name = "gist[tag_ids][]"
-
-        inputDiv = $("<div>" + $(this).text() + "</div>").addClass("round label")
-
-        input = $("<input name='" + name + "'>")
-
-        input.attr("value",  $(this).data("tagId"))
-        input.attr("size", 0)
-        input.attr("readonly", "true")
-
-        inputDiv.append(input)
-
-        $("#tagContainer").append(inputDiv)
+        that.addTag(this)
       )
     )
 
     that.element.focusout(() ->
-      console.log("out")
       timeoutId = window.setTimeout(() ->
         that.tagSelections.remove()
       , 200)
     )
+
+  this.addTag = (tagItem) ->
+    name = "gist[tag_ids][]"
+
+    inputDiv = $("<div>" + $(tagItem).text() + "</div>").addClass("round label")
+
+
+    input = $("<input name='" + name + "'>")
+
+    input.attr("value",  $(tagItem).data("tagId"))
+    input.attr("size", 0)
+    input.attr("readonly", "true")
+
+    close = $("<i class='foundicon-remove'></i>")
+    inputDiv.append(input).append(close)
+
+    inputDiv.find("i").click(() ->
+      inputDiv.remove()
+    )
+
+    $("#tagContainer").append(inputDiv)
 
   this.populateTagList = () ->
     that.tagSelections.empty() if that.tagSelections
@@ -89,7 +100,6 @@ this.TextSearchSelect = (element) ->
 
   this.modifyTagList = () ->
     regex = new RegExp(that.input.val(), "i")
-    console.log(regex)
     that.tags = _.filter(Tag.all, (tg)->
       return (regex.exec(tg.name))
     )

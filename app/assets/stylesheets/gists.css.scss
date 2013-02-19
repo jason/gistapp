@@ -19,8 +19,9 @@
 .tagSelectionContainer {
   position: absolute;
   z-index: 1;
-  width: 123px;
+  max-width: 123px;
   max-height: 300px;
+  overflow: auto;
   border: 1px solid lightgrey;
   box-shadow: 1px 0 10px 2px lightgrey;
   left: 63px;
@@ -58,6 +59,17 @@
   input {
     visibility: hidden;
     width: 0;
+  }
+
+  i {
+    position: relative;
+    top: 1px;
+    cursor: pointer;
+
+
+    &:hover {
+      color:red;
+    }
   }
 
   margin-right: 5px;
